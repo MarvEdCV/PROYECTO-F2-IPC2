@@ -7,5 +7,8 @@ urlpatterns = [
     path('adminoperaciones/',views.adminoperaciones),
     path('adminCrearCliente/',views.adminCrearCliente),
     path('Crearclienteemp/',views.Crearclienteemp),
-
+    path('CrearMonetaria/',views.crearMonetaria),
+    path('CrearAhorro/',views.crearAhorro),
+    path('CrearPF/',views.crearPF),
+    path('intermedia/',views.intermedia),
 ]

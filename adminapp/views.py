@@ -117,3 +117,12 @@ def Crearclienteemp(request):
             print('dader')
     return render(request,'adminCrearClienteemp.html',variable)
 
+def crearMonetaria(request):
+    return render(request,'CrearMonetaria.html')
+def crearAhorro(request):
+    return render(request,'CrearAhorro.html')
+def crearPF(request):
+    return render(request,'CrearPlazoFijo.html')
+
+def intermedia(request):
+    return render(request,'adminintermedia.html')

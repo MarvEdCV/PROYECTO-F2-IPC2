@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="{% static 'css/estilo.css' %}" />
 </head>
 <body>
+	<header>
+			<div class="logo">
+				<a href="#"><img src="{% static 'image/logo.png' %}" width="150" alt="Banca Electronica"></a>
+			</div>
+			<nav>
+				<a href="http://127.0.0.1:8000/adminlogin/">Administrador</a>
+				<a href="http://127.0.0.1:8000/">Banca virtual</a>
+			</nav>
+
+		</header>
 	<form class="login" method="POST">
 		<h4>INICIO ADMINISTRATIVO</h4>
 		<div class="data">
