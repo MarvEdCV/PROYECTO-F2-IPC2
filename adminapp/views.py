@@ -34,7 +34,7 @@ def adminCrearCliente(request):
     mensaje = ''
     variable={
         "form": form,
-        "mensaje": mensaje
+        "mensaje": mensaje,
     }
     if request.method == "POST":
         form = CrearClienteIndividual(data=request.POST)
@@ -59,7 +59,7 @@ def adminCrearCliente(request):
             mensaje = "SU USUARIO ES:----> "+str(z[0][0])+"  Y SU CONTRASEÑA ES-----> "+str(cui)
             variable = {
                 "form": form,
-                "mensaje": mensaje
+                "mensaje": mensaje,
             }
 
         else:
@@ -67,6 +67,53 @@ def adminCrearCliente(request):
             mensaje = "Ingrese datos"
             variable = {
                 "form": form,
-                "mensaje": mensaje
+                "mensaje": mensaje,
             }
-    return render(request,'adminCrearCliente.html',variable)
+    return render(request, 'adminCrearCliente.html', variable)
+
+
+def Crearclienteemp(request):
+    form1 = CrearClienteEmpresarial()
+    mensaje = "Ingrese datos"
+    variable = {
+        "mensaje": mensaje,
+        "form1": form1
+    }
+    if request.method == "POST":
+        form1 = CrearClienteEmpresarial(data=request.POST)
+        if form1.is_valid():
+            datos = form1.cleaned_data
+            #("tipoempresa","nombre","nombrecomercial","nombresrepresentante","apellidosrepresentante")
+            tipoempresa = datos.get("tipoempresa")
+            nombre = datos.get("nombre")
+            nombrecomercial = datos.get("nombrecomercial")
+            nombresrepresentante = datos.get("nombresrepresentante")
+            apellidosrepresentante = datos.get("apellidosrepresentante")
+            db = MySQLdb.connect(host=host, user=user, password=contra, db=db_name, connect_timeout=5)
+            c = db.cursor()
+            consulta2 ="INSERT INTO USUARIOEMPRESARIAL(tipoempresa,nombre,nombrecomercial,nombresrepresentante,apellidosrepresentante) VALUES('"+datos.get("tipoempresa")+"','"+datos.get("nombre")+ "','" +datos.get("nombrecomercial")+ "','" +datos.get("nombresrepresentante") + "','" +datos.get("apellidosrepresentante")+ "')"
+            c.execute(consulta2)
+            db.commit()
+            c.close()
+            zx = Usuarioempresarial.objects.filter(nombrecomercial=nombrecomercial).filter(nombresrepresentante=nombresrepresentante).values_list()
+            cd = db.cursor()
+            idusemp = str(zx[0][0])
+            temporal = idusemp
+            print(zx)
+            consulta3 = "INSERT INTO USUARIO(contra,idUsuarioemp) VALUES('" +nombrecomercial+ "'," + idusemp + ")"
+            cd.execute(consulta3)
+            db.commit()
+            cd.close()
+            print(temporal)
+            form1 = CrearClienteEmpresarial()
+            zd = Usuario.objects.filter(idusuarioemp=temporal).values_list()
+            print(zd)
+            mensaje = "SU USUARIO ES:----> " + str(zd[0][0]) + "  Y SU CONTRASEÑA ES-----> " + nombrecomercial
+            variable = {
+                "mensaje": mensaje,
+                "form1": form1
+            }
+        else:
+            print('dader')
+    return render(request,'adminCrearClienteemp.html',variable)
+

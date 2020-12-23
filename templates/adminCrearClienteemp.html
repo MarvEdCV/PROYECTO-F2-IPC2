@@ -24,14 +24,13 @@
 
 		</header>
 	<section class="login">
-		<h4>CREAR CLIENTE INDIVIDUAL</h4>
+		<h4>CREAR CLIENTE EMPRESARIAL</h4>
 		<form method="POST">
-		{{ form.as_p}}
+		{{ form1.as_p}}
 			{% csrf_token %}
 		<button class="datat" type="submit">Ingresar</button>
 	</form>
 		<h4>{{ mensaje }}</h4>
 	</section>
-
 </body>
 </html>
