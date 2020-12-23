@@ -83,3 +83,14 @@ h1{
 	width: 5%;
 	margin-bottom: 15px;
 }
+.operaciones1{
+  width: 700px;
+  background: #24303c;
+  padding: 50px;
+  margin: auto;
+  margin-top: 4%;
+  border-radius: 4px;
+  color: white;
+  box-shadow: 7px 13px 37px #000;
+
+}

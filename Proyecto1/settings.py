@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
+    'adminapp',
 ]
 
 MIDDLEWARE = [
@@ -80,16 +81,16 @@ WSGI_APPLICATION = 'Proyecto1.wsgi.application'
 #        'NAME': BASE_DIR / 'db.sqlite3',
 #    }
 #}
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django', # dbname
+        'NAME': 'Banca', # dbname
         'USER': 'root', # master username
-        'PASSWORD': '201113759', # master password
+        'PASSWORD': 'Marvinkata', # master password
         'HOST': 'localhost', # Endpoint
         'PORT': '3306',
     }
-}'''
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
