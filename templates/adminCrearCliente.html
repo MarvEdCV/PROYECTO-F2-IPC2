@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="{% static 'css/estilo.css' %}" />
 </head>
 <body>
-	<form class="login" method="POST">
-		<h4>INICIO ADMINISTRATIVO</h4>
-		<div class="data">
-			{{ form.as_p}}
-			 {% csrf_token %}
-		</div>
-		<button class="datat" type="submit" >Ingresar</button>
+	<section class="login">
+		<h4>CREAR CLIENTE INDIVIDUAL</h4>
+		<form method="POST">
+		{{ form.as_p}}
+			{% csrf_token %}
+		<button class="datat" type="submit">Ingresar</button>
 	</form>
+		<h4>{{ mensaje }}</h4>
+	</section>
 </body>
 </html>
