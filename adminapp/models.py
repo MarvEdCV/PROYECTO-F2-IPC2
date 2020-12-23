@@ -98,6 +98,48 @@ class Clienteindividual(models.Model):
         db_table = 'clienteindividual'
 
 
+class Cuenta(models.Model):
+    numerocuenta = models.AutoField(primary_key=True)
+    idusuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='idUsuario', blank=True, null=True)  # Field name made lowercase.
+    tipomoneda = models.CharField(max_length=1, blank=True, null=True)
+    estaactiva = models.CharField(db_column='estaActiva', max_length=2, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'cuenta'
+
+
+class Cuentaahorro(models.Model):
+    numerocuenta = models.OneToOneField(Cuenta, models.DO_NOTHING, db_column='numerocuenta', primary_key=True)
+    interes = models.IntegerField(blank=True, null=True)
+    saldo = models.DecimalField(max_digits=35, decimal_places=3, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'cuentaahorro'
+
+
+class Cuentamonetaria(models.Model):
+    numerocuenta = models.OneToOneField(Cuenta, models.DO_NOTHING, db_column='numerocuenta', primary_key=True)
+    preautoriza = models.CharField(max_length=2, blank=True, null=True)
+    nocheques = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'cuentamonetaria'
+
+
+class Cuentapf(models.Model):
+    numerocuenta = models.OneToOneField(Cuenta, models.DO_NOTHING, db_column='numerocuenta', primary_key=True)
+    interes = models.IntegerField(blank=True, null=True)
+    saldo = models.DecimalField(max_digits=35, decimal_places=3, blank=True, null=True)
+    tiempo = models.CharField(max_length=2, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'cuentapf'
+
+
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
     object_id = models.TextField(blank=True, null=True)
@@ -147,6 +189,7 @@ class Usuario(models.Model):
     contra = models.CharField(max_length=20, blank=True, null=True)
     cui = models.ForeignKey('Usuarioindividual', models.DO_NOTHING, db_column='CUI', blank=True, null=True)  # Field name made lowercase.
     idusuarioemp = models.ForeignKey('Usuarioempresarial', models.DO_NOTHING, db_column='idUsuarioemp', blank=True, null=True)  # Field name made lowercase.
+    deuda = models.DecimalField(max_digits=65, decimal_places=3, blank=True, null=True)
 
     class Meta:
         managed = False
