@@ -10,5 +10,5 @@ urlpatterns = [
     path('CrearMonetaria/',views.crearMonetaria),
     path('CrearAhorro/',views.crearAhorro),
     path('CrearPF/',views.crearPF),
-    path('intermedia/',views.intermedia),
+    path('intermedia/',views.intermedia1),
 ]

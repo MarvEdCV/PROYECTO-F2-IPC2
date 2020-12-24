@@ -69,18 +69,47 @@ foreign key(numerocuenta) references CUENTA(numerocuenta)
 
 create table CUENTAPF(
 numerocuenta int primary key,
-interes int,
+interes int,	
 saldo decimal(35,3),
 tiempo enum('3','6','12','24'),
 foreign key(numerocuenta) references CUENTA(numerocuenta)
 );
 
-/*CAMPO DE PRUEBAS*/
-insert into usuarioindividual values(12345,124,'loca ersr','erdsr fer','1985-08-12');
-select * from usuarioindividual;
-delete from usuarioindividual where cui=12345;
-insert into usuario(contra,cui) values('123',123);
-select * from usuario;
-select * from usuarioindividual;
-select * from usuarioempresarial;
+create table DEPOSITOS(
+numerocuenta int primary key,
+monto decimal(35,3),
+foreign key(numerocuenta) references CUENTA(numerocuenta)
+);
+create table COBRODECHEQUE(
+idcobro int auto_increment primary key,
+nocheque int,
+preautorizado enum('si','no')
+);
+create table TARJETADECREDITO(
+numerotarjeta int primary key,
+fechaemision date
+);
+create table SERVICIODEAGUA(
+contador int primary key,
+monto int,
+descripcion varchar(50)
+);
+create table SERVICIODELUZ(
+contador int primary key,
+monto int,
+descripcion varchar(50)
+);
+create table SERVICIOTELEFONO(
+numerotelefono int primary key,
+monto int,
+descripcion varchar(50)
+);
+create table TRANSACCION(
+nocuentadestino int primary key,
+monto int,
+descripcion varchar(50)
+);
+
+
+
 

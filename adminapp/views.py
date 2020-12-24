@@ -73,11 +73,11 @@ def adminCrearCliente(request):
 
 
 def Crearclienteemp(request):
-    form1 = CrearClienteEmpresarial()
+    form = CrearClienteEmpresarial()
     mensaje = "Ingrese datos"
     variable = {
         "mensaje": mensaje,
-        "form1": form1
+        "form1": form
     }
     if request.method == "POST":
         form1 = CrearClienteEmpresarial(data=request.POST)
@@ -116,6 +116,28 @@ def Crearclienteemp(request):
         else:
             print('dader')
     return render(request,'adminCrearClienteemp.html',variable)
+def intermedia1(request):
+    lista = Intermedia1.objects.all().values()
+    lista2 = []
+    for a in lista:
+        lista2.append((a.get('idusuario'), a.get('contra'),a.get('cui'),a.get('idusuarioemp'),a.get('deuda')))
+    print(lista2)
+    form = Intermedia1()
+    form.fields['idusuario'].choises = lista2
+    a = {
+        "form": form,
+    }
+    '''if request.method == 'POST':
+        form = Intermedia1(data = request.POST)
+        if form.is_valid():
+            form = Intermedia1()
+            form.fields['idprueba'].choices = lista2
+            a={
+                "form": form,
+            }'''
+
+
+    return render(request,'adminintermedia.html',a)
 
 def crearMonetaria(request):
     return render(request,'CrearMonetaria.html')
@@ -124,5 +146,3 @@ def crearAhorro(request):
 def crearPF(request):
     return render(request,'CrearPlazoFijo.html')
 
-def intermedia(request):
-    return render(request,'adminintermedia.html')
